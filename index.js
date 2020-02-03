@@ -21,7 +21,7 @@ var args = message.content.slice(config.prefix.length).trim().split(/ +/g);
 var command = args.shift().toLowerCase();
    try {
         let commandFile = require(`./commands/${command}.js`);
-        commandFile.run(client, message, args, database);
+        commandFile.run(client, message, args);
     } catch (err) {
         console.log(err)
     }
