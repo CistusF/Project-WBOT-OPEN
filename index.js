@@ -1,10 +1,16 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('./config.json')
-client.on('ready', () =>{
-console.log('Bot is operational')
+client.on('ready', () => {
+    console.clear()
+    console.log(`======= Bot is Ready =======`)
+    console.log(`===========================`)
+    console.log(`Bot is : ${client.user.tag}`)
+    console.log(`===========================`)
 })
+
 client.on('message', async (message) => {
+console.log(`message has been detected`)
 console.log(`${message.author.username} : ${message.content}`) //log
 if (message.author.bot) return;
 if (message.channel.type === "dm") {
@@ -19,6 +25,14 @@ var command = args.shift().toLowerCase();
     } catch (err) {
         console.log(err)
     }
+})
+
+client.on('guildMemberAdd', (member) => {
+    console.log(`${member.user.tag} has been join ${member.guild.name}`)
+})
+
+client.on('guildMemberRemove', (member) => {
+    console.log(`${member.user.tag} has been leave ${member.guild.name}`)
 })
 
 client.login(config.token)
